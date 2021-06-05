@@ -22,7 +22,7 @@ const MAX_INT = int(1<<32 - 1)
 const MIN_INT = int(-1 << 31)
 const MAX_LENGTH = 30000
 
-func Test_Problem0863(t *testing.T) {
+func Test_Problem0053(t *testing.T) {
 
 	maxLengthArray := make([]int, MAX_LENGTH)
 	for i := 0; i < MAX_LENGTH; i++ {
