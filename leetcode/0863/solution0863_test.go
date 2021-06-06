@@ -23,7 +23,7 @@ type answer struct {
 	one []int
 }
 
-func Test_Problem0863(t *testing.T) {
+func Test_Problem(t *testing.T) {
 
 	qs := []question{
 		{
