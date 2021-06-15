@@ -37,19 +37,19 @@ func shortestPathBinaryMatrix(grid [][]int) int {
 		{1, -1},
 	}
 
-	stack := []Coordinate{}
-	stack = append(stack, Coordinate{0, 0})
+	queue := []Coordinate{}
+	queue = append(queue, Coordinate{0, 0})
 	layer := 0
 
-	for len(stack) != 0 {
+	for len(queue) != 0 {
 		layer += 1
-		layerSize := len(stack)
+		layerSize := len(queue)
 
 		for layerSize > 0 {
 			layerSize--
 
-			s := stack[0]
-			stack = stack[1:]
+			s := queue[0]
+			queue = queue[1:]
 
 			if grid[s.X][s.Y] == 1 {
 				continue
@@ -68,7 +68,7 @@ func shortestPathBinaryMatrix(grid [][]int) int {
 				if x < 0 || y < 0 || x >= m || y >= n {
 					continue
 				}
-				stack = append(stack, Coordinate{x, y})
+				queue = append(queue, Coordinate{x, y})
 			}
 
 		}

@@ -37,6 +37,10 @@ func Test_Problem(t *testing.T) {
 			answer{4},
 		},
 		{
+			input{[][]int{{0, 0, 0, 1}, {0, 0, 1, 0}, {0, 1, 0, 0}, {1, 0, 0, 0}}},
+			answer{4},
+		},
+		{
 			input{[][]int{{0, 0, 0}, {1, 1, 1}, {1, 1, 0}}},
 			answer{-1},
 		},
