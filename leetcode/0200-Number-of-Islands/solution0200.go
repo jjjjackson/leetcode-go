@@ -9,15 +9,6 @@ type Coordinate struct {
 	X, Y int
 }
 
-func (coord Coordinate) within(cluster []Coordinate) bool {
-	for _, c := range cluster {
-		if c.X == coord.X && c.Y == coord.Y {
-			return true
-		}
-	}
-	return false
-}
-
 var directions = [4]Coordinate{
 	{-1, 0},
 	{0, 1},
@@ -44,7 +35,6 @@ func numIslands(grid [][]byte) int {
 
 func exploreIsland(grid [][]byte, from Coordinate) {
 	stack := []Coordinate{from}
-	visited := []Coordinate{}
 
 	for len(stack) > 0 {
 		coord := stack[len(stack)-1]
@@ -54,15 +44,10 @@ func exploreIsland(grid [][]byte, from Coordinate) {
 			continue
 		}
 
-		if coord.within(visited) {
-			continue
-		}
-
 		if grid[coord.X][coord.Y] == SEA {
 			continue
 		}
 
-		visited = append(visited, coord)
 		grid[coord.X][coord.Y] = SEA
 
 		for _, d := range directions {
