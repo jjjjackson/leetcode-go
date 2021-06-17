@@ -1,7 +1,6 @@
 package leetcode
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -80,11 +79,6 @@ func Test_Problem0053(t *testing.T) {
 
 		result := maxSubArray(q.input.nums)
 		pass := q.answer.one == result
-
-		fmt.Printf("【pass】:%v\t", pass)
-		fmt.Printf("【input】:%v\t", q.input)
-		fmt.Printf("【expect】:%v\t", q.answer.one)
-		fmt.Printf("【output】:%v\n\n", result)
 
 		if !pass {
 			t.Errorf("\n input: %v \n output: %v \n expect: %v", q.input, result, q.answer.one)
