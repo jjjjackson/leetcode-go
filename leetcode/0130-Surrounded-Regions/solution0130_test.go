@@ -16,7 +16,7 @@ type input struct {
 
 type expect = [][]byte
 
-func Test_Problem0200(t *testing.T) {
+func Test_Solution0130(t *testing.T) {
 
 	checker := func(t testing.TB, q *question) {
 		t.Helper()
@@ -64,7 +64,7 @@ func Test_Problem0200(t *testing.T) {
 		checker(t, q)
 	})
 
-	t.Run("TestBoundary", func(t *testing.T) {
+	t.Run("Boundary", func(t *testing.T) {
 		qs := []*question{
 			{
 				input{[][]byte{{'X'}}},

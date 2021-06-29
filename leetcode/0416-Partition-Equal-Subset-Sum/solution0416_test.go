@@ -13,7 +13,7 @@ type Input struct {
 
 type Expect = bool
 
-func Test_Problem0415(t *testing.T) {
+func Test_Solution0415(t *testing.T) {
 	checker := func(t testing.TB, q *Question) {
 		t.Helper()
 

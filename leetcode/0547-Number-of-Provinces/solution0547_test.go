@@ -4,47 +4,50 @@ import (
 	"testing"
 )
 
-type question struct {
-	input
-	answer
+type Question struct {
+	Input
+	Answer
 }
 
-type input struct {
-	isConnected [][]int
+type Input struct {
+	IsConnected [][]int
 }
 
-type answer struct {
-	one int
-}
+type Answer = int
 
-func Test_Problem0547(t *testing.T) {
+func Test_Solution0547(t *testing.T) {
 
-	qs := []question{
-		{
-			input{[][]int{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}},
-			answer{2},
-		},
-		{
-			input{[][]int{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}},
-			answer{3},
-		},
-		{
-			input{[][]int{{1, 0}, {0, 1}}},
-			answer{2},
-		},
-		{
-			input{[][]int{{1, 1}, {1, 1}}},
-			answer{1},
-		},
-	}
+	checker := func(t testing.TB, q *Question) {
 
-	for _, q := range qs {
-
-		result := findCircleNum(q.input.isConnected)
-		pass := q.answer.one == result
+		result := findCircleNum(q.Input.IsConnected)
+		pass := q.Answer == result
 
 		if !pass {
-			t.Errorf("\n input: %v \n output: %v \n expect: %v", q.input, result, q.answer.one)
+			t.Errorf("\n Input: %v \n output: %v \n expect: %v", q.Input, result, q.Answer)
 		}
 	}
+
+	t.Run("Given by question", func(t *testing.T) {
+		qs := []*Question{
+			{
+				Input{[][]int{{1, 1, 0}, {1, 1, 0}, {0, 0, 1}}},
+				2,
+			},
+			{
+				Input{[][]int{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}},
+				3,
+			},
+			{
+				Input{[][]int{{1, 0}, {0, 1}}},
+				2,
+			},
+			{
+				Input{[][]int{{1, 1}, {1, 1}}},
+				1,
+			},
+		}
+		for _, q := range qs {
+			checker(t, q)
+		}
+	})
 }

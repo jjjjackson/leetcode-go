@@ -4,55 +4,58 @@ import (
 	"testing"
 )
 
-type question struct {
-	input
-	answer
+type Question struct {
+	Input
+	Answer
 }
 
-type input struct {
+type Input struct {
 	grid [][]int
 }
 
-type answer struct {
-	one int
-}
+type Answer = int
 
-func Test_Problem(t *testing.T) {
-
-	qs := []question{
-		{
-			input{[][]int{{0, 1}, {1, 0}}},
-			answer{2},
-		},
-		{
-			input{[][]int{{0, 0}, {0, 1}}},
-			answer{-1},
-		},
-		{
-			input{[][]int{{1, 0}, {0, 0}}},
-			answer{-1},
-		},
-		{
-			input{[][]int{{0, 0, 0}, {1, 1, 0}, {1, 1, 0}}},
-			answer{4},
-		},
-		{
-			input{[][]int{{0, 0, 0, 1}, {0, 0, 1, 0}, {0, 1, 0, 0}, {1, 0, 0, 0}}},
-			answer{4},
-		},
-		{
-			input{[][]int{{0, 0, 0}, {1, 1, 1}, {1, 1, 0}}},
-			answer{-1},
-		},
-	}
-
-	for _, q := range qs {
-
-		result := shortestPathBinaryMatrix(q.input.grid)
-		pass := q.answer.one == result
+func Test_Solution1091(t *testing.T) {
+	checker := func(t testing.TB, q *Question) {
+		result := shortestPathBinaryMatrix(q.Input.grid)
+		pass := q.Answer == result
 
 		if !pass {
-			t.Errorf("\n input: %v \n output: %v \n expect: %v", q.input, result, q.answer.one)
+			t.Errorf("\n Input: %v \n output: %v \n expect: %v", q.Input, result, q.Answer)
 		}
 	}
+
+	t.Run("Given by question", func(t *testing.T) {
+
+		qs := []*Question{
+			{
+				Input{[][]int{{0, 1}, {1, 0}}},
+				2,
+			},
+			{
+				Input{[][]int{{0, 0}, {0, 1}}},
+				-1,
+			},
+			{
+				Input{[][]int{{1, 0}, {0, 0}}},
+				-1,
+			},
+			{
+				Input{[][]int{{0, 0, 0}, {1, 1, 0}, {1, 1, 0}}},
+				4,
+			},
+			{
+				Input{[][]int{{0, 0, 0, 1}, {0, 0, 1, 0}, {0, 1, 0, 0}, {1, 0, 0, 0}}},
+				4,
+			},
+			{
+				Input{[][]int{{0, 0, 0}, {1, 1, 1}, {1, 1, 0}}},
+				-1,
+			},
+		}
+
+		for _, q := range qs {
+			checker(t, q)
+		}
+	})
 }

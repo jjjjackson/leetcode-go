@@ -15,7 +15,7 @@ type input struct {
 
 type expect = int
 
-func Test_Problem0200(t *testing.T) {
+func Test_Solution0064(t *testing.T) {
 
 	checker := func(t testing.TB, q *question) {
 		t.Helper()
@@ -55,7 +55,7 @@ func Test_Problem0200(t *testing.T) {
 		checker(t, q)
 	})
 
-	t.Run("TestBoundary", func(t *testing.T) {
+	t.Run("Boundary", func(t *testing.T) {
 		qs := []*question{
 			{
 				input{[][]int{{}}},

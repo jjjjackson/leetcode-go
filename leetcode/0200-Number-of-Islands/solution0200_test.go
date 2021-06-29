@@ -4,55 +4,57 @@ import (
 	"testing"
 )
 
-type question struct {
-	input
-	answer
+type Question struct {
+	Input
+	Answer
 }
 
-type input struct {
+type Input struct {
 	grid [][]byte
 }
 
-type answer struct {
-	one int
-}
+type Answer = int
 
-func Test_Problem0200(t *testing.T) {
+func Test_Solution0200(t *testing.T) {
 
-	qs := []question{
-		{
-			input{[][]byte{
-				{'1', '1', '1', '1', '0'},
-				{'1', '1', '0', '1', '0'},
-				{'1', '1', '0', '0', '0'},
-				{'0', '0', '0', '0', '0'},
-			}},
-			answer{1},
-		},
-		{
-			input{[][]byte{
-				{'1', '1', '0', '0', '0'},
-				{'1', '1', '0', '0', '0'},
-				{'0', '0', '1', '0', '0'},
-				{'0', '0', '0', '1', '1'},
-			}},
-			answer{3},
-		},
-		{
-			input{[][]byte{
-				{'0', '0', '0', '0', '0'},
-			}},
-			answer{0},
-		},
-	}
-
-	for _, q := range qs {
-
-		result := numIslands(q.input.grid)
-		pass := q.answer.one == result
+	checker := func(t testing.TB, q *Question) {
+		result := numIslands(q.Input.grid)
+		pass := q.Answer == result
 
 		if !pass {
-			t.Errorf("\n input: %v \n output: %v \n expect: %v", q.input, result, q.answer.one)
+			t.Errorf("\n Input: %v \n output: %v \n expect: %v", q.Input, result, q.Answer)
 		}
 	}
+
+	t.Run("Given by question", func(t *testing.T) {
+		qs := []*Question{
+			{
+				Input{[][]byte{
+					{'1', '1', '1', '1', '0'},
+					{'1', '1', '0', '1', '0'},
+					{'1', '1', '0', '0', '0'},
+					{'0', '0', '0', '0', '0'},
+				}},
+				1,
+			},
+			{
+				Input{[][]byte{
+					{'1', '1', '0', '0', '0'},
+					{'1', '1', '0', '0', '0'},
+					{'0', '0', '1', '0', '0'},
+					{'0', '0', '0', '1', '1'},
+				}},
+				3,
+			},
+			{
+				Input{[][]byte{
+					{'0', '0', '0', '0', '0'},
+				}},
+				0,
+			},
+		}
+		for _, q := range qs {
+			checker(t, q)
+		}
+	})
 }
